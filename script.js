@@ -60,7 +60,6 @@ function setupQuiz() {
             answer: "a",
             color: "#005f73"
         },
-        // Puedes añadir más preguntas aquí si es necesario
     ];
 
     let score = 0;
@@ -97,7 +96,7 @@ function setupQuiz() {
             } else {
                 lives--;
                 alert(`Incorrecto. La respuesta correcta es: ${correctAnswer}`);
-                updateLivesDisplay(lives);
+                updateHearts(lives); // Actualiza los corazones
                 if (lives === 0) {
                     alert("Se acabaron las oportunidades. Fin del juego.");
                     document.getElementById('overlay').classList.add('hidden');
@@ -118,15 +117,9 @@ function setupQuiz() {
     document.getElementById('exit-button').addEventListener('click', () => {
         const confirmExit = confirm("¿Estás seguro de que quieres salir del juego?");
         if (confirmExit) {
-            // Aquí puedes agregar cualquier acción adicional antes de salir, si es necesario
             window.location.reload(); // O redirigir a otra página
         }
     });
-}
-
-function updateLivesDisplay(lives) {
-    const heartsContainer = document.getElementById('hearts');
-    heartsContainer.innerHTML = '❤️'.repeat(lives);
 }
 
 function getColorFromRotation(transform) {
@@ -147,10 +140,13 @@ function displayOverlay(question) {
             optionsContainer.innerHTML += optionHtml; // Agregar las opciones de respuesta
         });
 
-        // Mostrar corazones
-        updateLivesDisplay(lives); 
+        updateHearts(2); // Reiniciar los corazones
         document.getElementById('overlay').classList.remove('hidden'); // Mostrar overlay
     }
+}
+
+function updateHearts(lives) {
+    document.getElementById('hearts').innerHTML = '❤️'.repeat(lives); // Actualiza los corazones mostrados
 }
 
 function setupImageSlider() {
