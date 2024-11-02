@@ -60,7 +60,6 @@ function setupQuiz() {
             answer: "a",
             color: "#005f73"
         },
-        // Añade más preguntas aquí si es necesario
     ];
 
     let score = 0;
@@ -86,7 +85,7 @@ function setupQuiz() {
             if (userAnswer === correctAnswer) {
                 score++;
                 alert('¡Correcto! +1 punto.');
-                currentQuestionIndex++; // Avanzar a la siguiente pregunta automáticamente
+                currentQuestionIndex++; // Avanzar a la siguiente pregunta
                 if (currentQuestionIndex < questions.length) {
                     const nextQuestion = questions[currentQuestionIndex];
                     displayOverlay(nextQuestion);
@@ -97,22 +96,42 @@ function setupQuiz() {
             } else {
                 lives--;
                 alert(`Incorrecto. La respuesta correcta es: ${correctAnswer}`);
+                document.getElementById('hearts').innerHTML = '❤️'.repeat(lives);
                 if (lives === 0) {
                     alert("Se acabaron las oportunidades. Fin del juego.");
                     document.getElementById('overlay').classList.add('hidden');
                     return;
                 }
+                // Repetir la misma pregunta
+                displayOverlay(questions[currentQuestionIndex]);
             }
 
-            // Actualizar corazones
-            document.getElementById('hearts').innerHTML = '❤️'.repeat(lives);
             document.getElementById('score').innerText = 'Puntaje total: ' + score;
             document.getElementById('score').classList.remove('hidden');
-            document.getElementById('overlay').classList.add('hidden'); // Ocultar overlay después de responder
+            document.getElementById('overlay').classList.remove('hidden'); // Mantener el overlay visible
         } else {
             alert('Por favor, selecciona una respuesta.');
         }
     });
+
+    // Evento para el botón de salida
+    document.getElementById('exit-button').addEventListener('click', () => {
+        const confirmation = confirm("¿Estás seguro de que deseas salir del juego?");
+        if (confirmation) {
+            alert("Saliendo del juego...");
+            document.getElementById('overlay').classList.add('hidden');
+            resetGame();
+        }
+    });
+}
+
+// Función para reiniciar el juego
+function resetGame() {
+    score = 0;
+    currentQuestionIndex = 0;
+    lives = 2;
+    document.getElementById('score').innerText = 'Puntaje total: ' + score;
+    document.getElementById('hearts').innerHTML = '❤️❤️'; // Reiniciar corazones
 }
 
 function getColorFromRotation(transform) {
