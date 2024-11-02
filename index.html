@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guardianes del Clima</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <h1>Guardianes del Clima</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#weather-info">Información Meteorológica</a></li>
+                <li><a href="#recommendations">Recomendaciones</a></li>
+                <li><a href="#quiz">Minijuego</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="image-slider">
+            <h2>Imágenes de Acción por el Clima</h2>
+            <div class="slider">
+                <div class="slides">
+                    <img src="https://www.cepal.org/sites/default/files/styles/1…image_2024-10-30_at_5.25.14_pm.jpeg?itok=ledAJG0y"
+                        alt="Acción por el Clima 1">
+                    <img src="https://example.com/image2.jpg" alt="Acción por el Clima 2">
+                    <img src="https://example.com/image3.jpg" alt="Acción por el Clima 3">
+                </div>
+            </div>
+        </section>
+
+        <section id="weather-info">
+            <h2>Información Meteorológica</h2>
+            <div id="data"></div>
+        </section>
+
+        <section id="recommendations">
+            <h2>Recomendaciones de Seguridad</h2>
+            <div id="advice"></div>
+        </section>
+
+        <section id="quiz">
+            <h2>Minijuego: Trivia sobre Gestión de Emergencias</h2>
+            <div id="wheel" class="wheel"></div>
+            <button id="spin">Girar Ruleta</button>
+            <input type="hidden" id="currentAnswer">
+
+            <div id="overlay" class="overlay hidden">
+                <div class="overlay-content">
+                    <div id="hearts" style="font-size: 24px; margin-bottom: 10px;"></div>
+
+                    <h2 id="overlay-question"></h2>
+                    <div id="answer-options"></div> <!-- Aquí se agregarán las opciones -->
+                    <button id="submit">Enviar</button>
+                    <button id="continue" class="hidden">Continuar</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2024 Guardianes del Clima. Todos los derechos reservados.</p>
+        <p>En el marco del ODS #13: Acción por el Clima.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
