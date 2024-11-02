@@ -60,6 +60,7 @@ function setupQuiz() {
             answer: "a",
             color: "#005f73"
         },
+        // Puedes añadir más preguntas aquí si es necesario
     ];
 
     let score = 0;
@@ -96,7 +97,7 @@ function setupQuiz() {
             } else {
                 lives--;
                 alert(`Incorrecto. La respuesta correcta es: ${correctAnswer}`);
-                document.getElementById('hearts').innerHTML = '❤️'.repeat(lives);
+                updateLivesDisplay(lives);
                 if (lives === 0) {
                     alert("Se acabaron las oportunidades. Fin del juego.");
                     document.getElementById('overlay').classList.add('hidden');
@@ -108,30 +109,24 @@ function setupQuiz() {
 
             document.getElementById('score').innerText = 'Puntaje total: ' + score;
             document.getElementById('score').classList.remove('hidden');
-            document.getElementById('overlay').classList.remove('hidden'); // Mantener el overlay visible
         } else {
             alert('Por favor, selecciona una respuesta.');
         }
     });
 
-    // Evento para el botón de salida
+    // Funcionalidad para el botón de salida
     document.getElementById('exit-button').addEventListener('click', () => {
-        const confirmation = confirm("¿Estás seguro de que deseas salir del juego?");
-        if (confirmation) {
-            alert("Saliendo del juego...");
-            document.getElementById('overlay').classList.add('hidden');
-            resetGame();
+        const confirmExit = confirm("¿Estás seguro de que quieres salir del juego?");
+        if (confirmExit) {
+            // Aquí puedes agregar cualquier acción adicional antes de salir, si es necesario
+            window.location.reload(); // O redirigir a otra página
         }
     });
 }
 
-// Función para reiniciar el juego
-function resetGame() {
-    score = 0;
-    currentQuestionIndex = 0;
-    lives = 2;
-    document.getElementById('score').innerText = 'Puntaje total: ' + score;
-    document.getElementById('hearts').innerHTML = '❤️❤️'; // Reiniciar corazones
+function updateLivesDisplay(lives) {
+    const heartsContainer = document.getElementById('hearts');
+    heartsContainer.innerHTML = '❤️'.repeat(lives);
 }
 
 function getColorFromRotation(transform) {
@@ -153,7 +148,7 @@ function displayOverlay(question) {
         });
 
         // Mostrar corazones
-        document.getElementById('hearts').innerHTML = '❤️❤️'; 
+        updateLivesDisplay(lives); 
         document.getElementById('overlay').classList.remove('hidden'); // Mostrar overlay
     }
 }
